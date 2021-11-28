@@ -34,7 +34,17 @@ The input files from both scripts are CSV files in the standard format (use "," 
 <p>2,2,2,2,2, (...)</p>
 <p>(...)"</p>
 
-<b><i>*Keep in mind to change to your current model and your current dataset format, if not intend to use the same as I did.</i></b>
+<p><b><i>* Keep in mind to change to your current model and your current dataset format, if not intend to use the same as I did.</i></b>
+  
+<h3><i>Where are the P-values?</i></h3>
+As I write this document, the SemInR library does not provide the bootstrapped P-values by itself, only the T-score for each relation. To obtain them, you need to calculate manually. You can use Excel/Open Office/Libreoffice to find the P-value - in Excel and Libreoffice, use the T.DIST.2T(value, deg_freedom)** function for double sided tests. This calculation was validated with a statistical professional. That being said, use the following formulas:
+<p>
+<ol>
+  <li> If (T-score < 0): P-value = T.DIST.2T(ABS(T-score), deg_freedom).</li>
+  <li> If (T-score > 0): P-value = T.DIST.2T(ABS(1 - T-score), deg_freedom).
+</ol>
+
+<p><b><i>** Writen in 28/11/2021. This may vary according to your software version and language. In PT-BR, use the DIST.T.BC(T-score, deg_freedom) for the same function.
 
 <h2>Dependencies and installation</h2>
 The preprocessing script uses <a href="https://pandas.pydata.org/">pandas</a> and <a href="https://scikit-learn.org/">Sci-kit Learn</a>.
@@ -48,7 +58,7 @@ Installation commands (if not working, reffer to their oficial websites):
 <li><i>install.packages("DiagrammeR")</i></li>
 </ul>
 After installing the dependencies, open the scripts in your editor/ide, make the necessary changes and execute. The R script will ask for its dependencies if not installed.
-
+<p>
 The datasets and the scripts are meant to be in the same folder. If not, change it accordingly in the scripts (or move the datasets).
 
 <h2> References </h2>
